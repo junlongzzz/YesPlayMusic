@@ -8,11 +8,12 @@ COPY . .
 
 RUN apk add --no-cache python3 make g++ git \
     && yarn install --frozen-lockfile \
+    && yarn prettier \
     && yarn build
 
 # app
 
-FROM node:22-alpine AS app
+FROM node:lts-alpine AS app
 
 RUN apk add --no-cache nginx && npm i -g @neteasecloudmusicapienhanced/api
 
